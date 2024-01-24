@@ -5,8 +5,18 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React</title>
+    <script src="/src/scripts/loader.js" defer></script>
   </head>
   <body>
+    <div class="loadingWrapper" id="loadingWrapper">
+      <div class="elementload">
+        <img src="/src/assets/test_img.png"/>
+        <div class="progress-cont">
+          <div class="progressbar" id="progressbar"></div>
+        </div>
+        <p id="load_text"><b></b></p>
+      </div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
