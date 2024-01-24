@@ -6,6 +6,7 @@ html {
   height: 100%;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
+  overflow: hidden;
 }
 
 body {

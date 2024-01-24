@@ -4,22 +4,21 @@ import * as THREE from 'three';
 
 const Spiral = (props) => {
 
-    const { scrollY } = props;
+    // const { scrollY } = props;
     const spiralRef = useRef();
     // Number of cubes you want along the spiral
-    const [scrollPosition, setScrollPosition] = useState(0);
 
-    const rTop = .04;
+    const rTop = .08;
     const rBtm = .04;
     const R = 20; // radius of the spiral
     const T = 2; // twists of the spiral
-    const heightSegments = 2000;
+    const heightSegments = 1000;
     const radialSegments = 32;
     const slope = 80;
     let s = 0;
     const geometry = new THREE.CylinderGeometry( rTop, rBtm, T * Math.PI * 2, radialSegments, heightSegments, true );
     const position = geometry.attributes.position;
-    geometry.translate( R,  Math.PI /2, 0 );
+    geometry.translate( R,  Math.PI / 2, 0 );
     const v = new THREE.Vector3( );
     const w = new THREE.Vector3( );
 

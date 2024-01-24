@@ -2,7 +2,7 @@
 import * as THREE from 'three'
 import './App.css';
 import React, { useEffect, useState, useRef, us } from 'react';
-import { Canvas, useFrame , useThree} from '@react-three/fiber'
+import { Canvas, _roots, useFrame , useThree} from '@react-three/fiber'
 import Card from './Card.jsx';
 import { Image, Environment, ScrollControls, useScroll, useTexture, OrbitControls } from '@react-three/drei';
 import { easing , geometry} from 'maath'
@@ -66,7 +66,8 @@ function Axis(props) {
   const ref = useRef()
   const scroll = useScroll()
   useFrame((state, delta) => {
-    ref.current.rotation.y = -scroll.offset * (Math.PI * 4) * 1.002 // Rotate contents
+    ref.current.rotation.y = -scroll.offset * (Math.PI ) * 1.002 // Rotate contents
+    ref.current.scale.set(0.8 + scroll.offset, 0.8 + scroll.offset , 0.8 + scroll.offset ) 
     state.events.update() // Raycasts every frame rather than on pointer-move
     state.camera.lookAt(0, 0, 20) // Look at center
   })
@@ -74,23 +75,33 @@ function Axis(props) {
 }
 
 function Cards() {
-  const R = 25; // radius of the spiral
-  const numberOfCards = 9;
-  var objPerTurn = 3;
-
-  const cardPosition = (i) => {
+  const numberOfCards = 10;
+  var objPerTurn = 2;
+  let lastPosition = 0;
+  let sense = 1; // 1 or -1
+  const cardPosition = (i, lastPosition, sense) => {
+    const step = 2;
     const position = new THREE.Vector3();
-    let angleStep = (Math.PI * 4) / objPerTurn;
-    const radius = R;
-    position.x = (Math.cos(angleStep * i) * radius ) * 0.1 - .8;
-    position.y = -(Math.sin(angleStep * i ) * radius ) * 0.1;
-    position.z = (Math.sin(angleStep * i) * radius / Math.PI / 2) * -0.1;
-    console.log("position: " + i, position);
+    const radius = 1; // radius of the spiral
+
+    // let angleStep = (Math.PI * 4) / objPerTurn;
+
+    // position.x = (Math.cos(angleStep * i) * radius ) * 0.1 - .8;
+    // position.y = lastPosition + Math.sin(angleStep * i) * radius * 0.1;
+    // position.z = (Math.sin(angleStep * i) * radius) / (Math.PI * 2) * -0.1;
+    position.x =  radius * sense ;
+    position.y = -(i * step + 1) + 3// y is always negative
+    position.z = radius * sense;
+    // console.log("position: " + i, position);
     return position;
   };
 
-  return Array.from({ length: numberOfCards }, (_, i) => {
-    const position = cardPosition(i); // Call the function to get the position
+  return Array.from({ length: numberOfCards, sense }, (_, i) => {
+    const position = cardPosition(i, lastPosition, sense); // Call the function to get the position
+    lastPosition = position.y;
+    console.log("Card Position: " + i, position);
+    sense *= -1;
+
     return (
       <Card
         key={i}
