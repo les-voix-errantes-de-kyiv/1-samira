@@ -82,6 +82,8 @@ const Spiral = (props) => {
 
         }
         // console.log("CONTROL OUT")
+        console.log("CONTROL OUT")
+        console.log(spiralRef.current.position);
     }, [scrollY]);
 
 return (

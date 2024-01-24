@@ -1,5 +1,6 @@
 import './App.css';
 import Spiral from './Spiral.jsx';
+<<<<<<< HEAD
 import * as THREE from 'three'
 import React, { useEffect, useState, useRef, us } from 'react';
 import { Canvas, useFrame , useThree} from '@react-three/fiber'
@@ -7,6 +8,11 @@ import { Canvas, useFrame , useThree} from '@react-three/fiber'
 import Card from './Card.jsx';
 import { Image, Environment, ScrollControls, useScroll, useTexture, OrbitControls } from '@react-three/drei';
 import { easing , geometry} from 'maath'
+=======
+import Statue from './Statue';
+import { OrbitControls } from '@react-three/drei';
+import React, { useEffect, useState } from 'react';
+>>>>>>> 9bd74b49acbc1656b160ae997c752d939ffaedd6
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
@@ -35,6 +41,9 @@ function App() {
         <Cards />
         {/* </Rig> */}
         {/* <OrbitControls /> */}
+        <gridHelper args={[10, 10]} />
+        <Statue />
+
       </Canvas>
     </div>
   );

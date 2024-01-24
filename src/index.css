@@ -25,3 +25,42 @@ body {
   height: 100%;
 }
 
+.loadingWrapper{
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.elementload{
+  color:white;
+  text-align: center;
+}
+
+.progress-cont{
+  width: 65%;
+  border: 3px white solid;
+  margin: 0 auto;
+  height: 10px;
+  position: relative;
+}
+
+.progressbar{
+  width: calc(0% - 5px);
+  background-color: white;
+  margin: 7px;
+  height: 6px;
+  top: -5px;
+  left: -5px;
+  position: absolute;
+  transition: width 0.5s ease;
+}
