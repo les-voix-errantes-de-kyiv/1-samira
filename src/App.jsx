@@ -1,6 +1,7 @@
 import './App.css';
 import { Canvas } from '@react-three/fiber';
 import Spiral from './Spiral.jsx';
+import Statue from './Statue';
 import { OrbitControls } from '@react-three/drei';
 import React, { useEffect, useState } from 'react';
 
@@ -28,7 +29,14 @@ function App() {
         <spotLight position={[10, 10, 10]} angle={0.45} penumbra={1} decay={0} intensity={2} />
         <pointLight position={[-10, -10, -10]} decay={1} intensity={1} />
         <Spiral position={[0, 0, 0]} scale={[0.055, 0.055, 0.055]} scrollY={scrollY}  />
-        {/* <OrbitControls /> */}
+  
+
+        <ambientLight intensity={1} />
+        <spotLight position={[10, 10, 10]} angle={0.45} penumbra={1} decay={0} intensity={2} />
+        <pointLight position={[-10, -10, -10]} decay={1} intensity={1} />
+
+        <gridHelper args={[10, 10]} />
+        <Statue />
 
       </Canvas>
     </div>
