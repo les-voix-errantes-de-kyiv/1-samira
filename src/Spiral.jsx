@@ -43,47 +43,45 @@ const Spiral = (props) => {
 
     // Scroll event listener
     useEffect(() => {
-        console.log("CONTROL")
+        // console.log("CONTROL")
         // Access the spiralRef.current and apply your logic here
         if (spiralRef.current) {
             // Calculate rotation based on scroll direction and reference position
             const rotationSpeed = 0.1;
             const scrollDirection = scrollY >= scrollPosition ? 1 : -1;
-            console.log('scrollDirection: ', scrollDirection);
+            // console.log('scrollDirection: ', scrollDirection);
             spiralRef.current.rotation.z += rotationSpeed * scrollDirection;
 
             setScrollPosition(scrollY);
-            const calculateCubePosition = (index) => {
-                const position = new THREE.Vector3();
-                const angle = (index / numberOfCubes) * Math.PI * 4; // Adjust this value for the desired separation
-                const radius = R; // Use the same radius as the spiral
-                console.log("Operators:  ", slope , index , heightSegments ,  radialSegments)
-                const height = (slope * index / radialSegments); // Adjust this value based on your desired height offset
-                console.log("height: ", height);
-                position.x = radius * Math.cos(angle) - 0.5;
-                position.y = radius * Math.sin(angle) - 0.5;
-                position.z = -(height * Math.PI /2 ) - 0.5;
-
-                return position;
-            };
-              
-            // Place cubes along the height of the spiral
-            for (let i = 0; i < numberOfCubes; i++) {
-                const cube = new THREE.Mesh(
-                new THREE.BoxGeometry(1, 1, 1),
-                new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-                );
+            // const calculateCubePosition = (index) => {
+            //     const position = new THREE.Vector3();
+            //     const angle = (index / numberOfCubes) * Math.PI * 4; // Adjust this value for the desired separation
+            //     const radius = R; // Use the same radius as the spiral
+            //     // console.log("Operators:  ", slope , index , heightSegments ,  radialSegments)
+            //     const height = (slope * index / radialSegments); // Adjust this value based on your desired height offset
+            //     // console.log("height: ", height);
+            //     position.x = radius * Math.cos(angle) - 0.5;
+            //     position.y = radius * Math.sin(angle) - 0.5;
+            //     position.z = -(height * Math.PI / 2 ) - 0.5;
+            //     return position;
+            // };
+            // // Place cubes along the height of the spiral
+            // for (let i = 0; i < numberOfCubes; i++) {
+            //     const cube = new THREE.Mesh(
+            //     new THREE.BoxGeometry(1, 1, 1),
+            //     new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+            //     );
             
-                const cubePosition = calculateCubePosition(i);
-                cube.position.set(cubePosition.x, cubePosition.y, cubePosition.z);
-                console.log("cubePosition: ", cubePosition);
-                cubesRef.current.push(cube);
-                spiralRef.current.add(cube);
-            }
+            //     const cubePosition = calculateCubePosition(i);
+            //     cube.position.set(cubePosition.x, cubePosition.y, cubePosition.z);
+            //     // console.log("cubePosition: ", cubePosition);
+            //     cubesRef.current.push(cube);
+            //     spiralRef.current.add(cube);
+            // }
             // setCurrentScrollDirection(scrollDirection);
 
         }
-        console.log("CONTROL OUT")
+        // console.log("CONTROL OUT")
     }, [scrollY]);
 
 return (
