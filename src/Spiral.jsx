@@ -9,11 +9,11 @@ const Spiral = (props) => {
     // Number of cubes you want along the spiral
     const [scrollPosition, setScrollPosition] = useState(0);
 
-    const rTop = 1.4;
-    const rBtm = 1.4;
+    const rTop = .04;
+    const rBtm = .04;
     const R = 20; // radius of the spiral
-    const T = 3.5; // twists of the spiral
-    const heightSegments = 600;
+    const T = 2; // twists of the spiral
+    const heightSegments = 2000;
     const radialSegments = 32;
     const slope = 80;
     let s = 0;
@@ -35,26 +35,9 @@ const Spiral = (props) => {
     geometry.translate( 0, 0, - ( w.z - v.z ) / 2 );
     geometry.computeVertexNormals( );
 
-    // Scroll event listener
-    useEffect(() => {
-        // console.log("CONTROL")
-        // Access the spiralRef.current and apply your logic here
-        if (spiralRef.current) {
-            // Calculate rotation based on scroll direction and reference position
-            const rotationSpeed = 0.1;
-            const scrollDirection = scrollY >= scrollPosition ? 1 : -1;
-            // console.log('scrollDirection: ', scrollDirection);
-            spiralRef.current.rotation.z += rotationSpeed * scrollDirection;
-
-            setScrollPosition(scrollY);
-        }
-        // console.log("CONTROL OUT")
-        console.log("CONTROL OUT")
-        console.log(spiralRef.current.position);
-    }, [scrollY]);
 
 return (
-    <mesh {...props} ref={spiralRef} rotation={[Math.PI /2, 0, 0]} geometry={geometry}>
+    <mesh {...props} ref={spiralRef} rotation={[Math.PI /2, 0, Math.PI /2]} geometry={geometry}>
         <meshNormalMaterial side={THREE.DoubleSide} wireframe={false} />
     </mesh>
 );

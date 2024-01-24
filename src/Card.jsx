@@ -17,10 +17,19 @@ export default function Card({ url, ...props }) {
     easing.damp(ref.current.material, 'radius', hovered ? 0.25 : 0.1, 0.2, delta);
     easing.damp(ref.current.material, 'zoom', hovered ? 1 : 1.5, 0.2, delta);
   });
+  
+  const materialProps = {
+    transparent: true,
+    opacity: 1, // Adjust the opacity as needed
+  };
+
+
 
   return (
-      <Image ref={ref} url={url} transparent side={THREE.DoubleSide} onPointerOver={pointerOver} onPointerOut={pointerOut} {...props}>
+      <Image ref={ref} url={url}  side={THREE.DoubleSide} 
+      onPointerOver={pointerOver} onPointerOut={pointerOut}
+      materialProps = {materialProps}{...props}>
         <bentPlaneGeometry args={[0.1, 1, 1, 20, 20]} />
-      </Image>
+      </Image>      
   );
 }
