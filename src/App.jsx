@@ -67,7 +67,7 @@ function Axis(props) {
   const scroll = useScroll()
   useFrame((state, delta) => {
     ref.current.rotation.y = -scroll.offset * (Math.PI ) * 1.002 // Rotate contents
-    ref.current.scale.set(0.8 + scroll.offset, 0.8 + scroll.offset , 0.8 + scroll.offset ) 
+    ref.current.scale.set(0.8 + scroll.offset * 0.7, 0.8 + scroll.offset * 0.7, 0.8 + scroll.offset * 0.7) 
     state.events.update() // Raycasts every frame rather than on pointer-move
     state.camera.lookAt(0, 0, 20) // Look at center
   })
