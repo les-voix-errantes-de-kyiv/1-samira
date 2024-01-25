@@ -7,6 +7,7 @@ import Card from './Card.jsx';
 import { Image, Environment, ScrollControls, useScroll, useTexture, OrbitControls } from '@react-three/drei';
 import { easing , geometry} from 'maath'
 import Statue from './Statue';
+import TextCard from './TextCard.jsx';
 import Spiral from './Spiral.jsx';
 
 let sense = 1; // 1 or -1
@@ -44,7 +45,7 @@ function App() {
           <Axis rotation={[0, 0, 0]}>
             <Statue />
           </Axis>
-          <gridHelper args={[10, 10]} />
+          {/* <gridHelper args={[10, 10]} /> */}
         </ScrollControls>
         
         { /*<OrbitControls />*/ }
@@ -126,15 +127,19 @@ function Cards() {
     const position = cardPosition(i, lastPosition, sense, senseZ); // Call the function to get the position
     lastPosition = position.y;
     console.log("Card Position: " + i, position);
-
+  
+    const cardUrl = `/img${Math.floor(i % 10) + 1}_.png`;
+    const textUrl = `/img1_txt.png`;
+    if (!textUrl || !cardUrl) return null;
     return (
       <Card
         key={i}
         url={`/img${Math.floor(i % 10) + 1}_.jpg`}
         position={[position.x, position.y, position.z]}
         text={`Card ${i}`}
-        rotation={[0,  position.rotationY, 0]}
+        rotation={[0,  (Math.PI *2), 0]}
       />
     );
   });
+  
 }
