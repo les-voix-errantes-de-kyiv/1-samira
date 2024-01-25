@@ -7,6 +7,7 @@ import Card from './Card.jsx';
 import { Image, Environment, ScrollControls, useScroll, useTexture, OrbitControls } from '@react-three/drei';
 import { easing , geometry} from 'maath'
 import Statue from './Statue';
+import TextCard from './TextCard.jsx';
 import Spiral from './Spiral.jsx';
 
 
@@ -41,7 +42,7 @@ function App() {
           <Axis rotation={[0, 0, 0]}>
             <Statue />
           </Axis>
-          <gridHelper args={[10, 10]} />
+          {/* <gridHelper args={[10, 10]} /> */}
         </ScrollControls>
         
         {/* <OrbitControls /> */}
@@ -79,10 +80,10 @@ function Cards() {
   var objPerTurn = 2;
   let lastPosition = 0;
   let sense = 1; // 1 or -1
-  const cardPosition = (i, lastPosition, sense) => {
+  const cardPosition = (i, sense) => {
     const step = 2;
     const position = new THREE.Vector3();
-    const radius = 1; // radius of the spiral
+    const radius = 1.2; // radius of the spiral
 
     // let angleStep = (Math.PI * 4) / objPerTurn;
 
@@ -97,19 +98,34 @@ function Cards() {
   };
 
   return Array.from({ length: numberOfCards, sense }, (_, i) => {
-    const position = cardPosition(i, lastPosition, sense); // Call the function to get the position
-    lastPosition = position.y;
+    const position = cardPosition(i, sense); // Call the function to get the position
     console.log("Card Position: " + i, position);
     sense *= -1;
-
+  
+    const cardUrl = `/img${Math.floor(i % 10) + 1}_.png`;
+    const textUrl = `/img1_txt.png`;
+    if (!textUrl || !cardUrl) return null;
     return (
-      <Card
-        key={i}
-        url={`/img${Math.floor(i % 10) + 1}_.jpg`}
-        position={[position.x, position.y, position.z]}
-        text={`Card ${i}`}
-        rotation={[0,  (Math.PI *2), 0]}
-      />
+      <group key={i}>
+        {cardUrl && (
+          <Card
+            key={i}
+            url={cardUrl}
+            position={[position.x, position.y, position.z]}
+            rotation={[0, Math.PI * 2, 0]}
+          />
+        )}
+  
+        {/* {textUrl && (
+          <TextCard
+            key={i + '_txt'}
+            url={textUrl}
+            position={[position.x - 0.1, position.y + 0.1, position.z]}
+            rotation={[0, Math.PI * 2, 0]}
+          />
+        )} */}
+      </group>
     );
   });
+  
 }
