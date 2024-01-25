@@ -12,41 +12,10 @@ import Spiral from './Spiral.jsx';
 
 function App() {
 
-  const [scrollY, setScrollY] = useState(0);
-  const [opacity, setOpacity] = useState(1); // Opacité initiale
-
-  useEffect(() => {
-
-    const test = document.querySelector('div.canvas-container > div:last-child > div:last-child div')
-
-    const handleScroll = () => {
-      const newScrollY = test.scrollTop;
-
-      console.log("scroll "+newScrollY)
-
-      // Calculer l'opacité en fonction de la position du scroll
-      const newOpacity = 1 - newScrollY / 500; // Modifiez 500 selon vos besoins
-
-      // Limiter l'opacité entre 0 et 1
-      const limitedOpacity = Math.max(0, Math.min(1, newOpacity));
-
-      setScrollY(newScrollY);
-      setOpacity(limitedOpacity);
-    };
-
-    console.log("el "+test)
-
-    window.addEventListener('scroll', handleScroll);
-  
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [scrollY,opacity]);
-
   return (
     <div className="canvas-container">
 
-    <div className="hud-cust" id="hudcust" style={{opacity}}>
+    <div className="hud-cust" id="hudcust" >
 
       <div className="hud-title">Samira's journey</div>
       <div className="hud-why">Why ?</div>
@@ -63,7 +32,7 @@ function App() {
         <ambientLight intensity={1} />
         <spotLight position={[10, 10, 10]} angle={0.45} penumbra={1} decay={0} intensity={2} />
         <pointLight position={[-10, -10, -10]} decay={1} intensity={1} />
-        <ScrollControls pages={40}  >
+        <ScrollControls pages={40} >
           <Rig rotation={[0, Math.PI, 0]}>
             {/*<Spiral rotation={[0, Math.PI  , 0] }position={[0, 0, 0]} scale={[0.055, 0.055, 0.055]} scrollY={scrollY}  />*/}
             <Cards />
@@ -110,7 +79,7 @@ function Cards() {
   let loopPoint = 1;// 
   let pic_between_text_gap = 0.15;
 
-  const numberOfCards = 60;
+  const numberOfCards = 29;
   var objPerTurn = 2;
   let lastPosition = 0;
 
@@ -148,7 +117,7 @@ function Cards() {
   };
 
   return Array.from({ length: numberOfCards  , sense, senseZ }, (_, i) => {
-
+    console.log('i: ', i)
     if(loopPoint == 1){ sense *= -1; }else if (loopPoint == -1){ senseZ *= -1; }
     // We switch loopPoint to adjust the axis we are based on(x or z axis)
     loopPoint *= -1;
@@ -162,8 +131,8 @@ function Cards() {
       console.log('Position Text Card: ', position)
     }
   
-    const cardUrl = `/img${Math.floor(i % 10) + 1}_.png`;
-    const textUrl = `/img${Math.floor(i % 10) + 1}_txt.png`;
+    const cardUrl = `/img${i+1}_.png`;
+    const textUrl = `/img${i+1}_txt.png`;
     // For text, you can set a default text or modify it based on your requirements
     return (
       // <group key={i}>
@@ -191,7 +160,7 @@ function Cards() {
         )} */}
         <Card
           key={i}
-          url={`/img${Math.floor(i % 10) + 1}_.png`}
+          url={cardUrl}
           position={[position.x, position.y, position.z]}
           text={`Card ${i}`}
           rotation={[0,  position.rotationY, 0]}
