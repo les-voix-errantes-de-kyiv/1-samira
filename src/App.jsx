@@ -10,9 +10,9 @@ import Statue from './Statue';
 import TextCard from './TextCard.jsx';
 import Spiral from './Spiral.jsx';
 
-let sense = 1; // 1 or -1
-let senseZ = -1; // 1 or -1
-let loopPoint = 1;
+let sense = 1; // 1 or -1 to set x value
+let senseZ = -1; // 1 or -1 tp set z value
+let loopPoint = 1;// 
 
 function App() {
 
@@ -21,11 +21,12 @@ function App() {
 
   useEffect(() => {
 
-    const test = document.querySelector('div.canvas-container:last-child')
-    console.log(test)
+    const test = document.querySelector('div.canvas-container > div:last-child > div:last-child div')
 
     const handleScroll = () => {
-      const newScrollY = window.scrollY;
+      const newScrollY = test.scrollTop;
+
+      console.log("scroll "+newScrollY)
 
       // Calculer l'opacité en fonction de la position du scroll
       const newOpacity = 1 - newScrollY / 500; // Modifiez 500 selon vos besoins
@@ -37,24 +38,26 @@ function App() {
       setOpacity(limitedOpacity);
     };
 
-    test.addEventListener('scroll', handleScroll);
+    console.log("el "+test)
+
+    window.addEventListener('scroll', handleScroll);
   
     return () => {
-      test.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, [scrollY,opacity]);
 
   return (
     <div className="canvas-container">
 
-    <div class="hud-cust" id="hudcust" style={{opacity}}>
+    <div className="hud-cust" id="hudcust" style={{opacity}}>
 
-      <div class="hud-title">Samira's journey</div>
-      <div class="hud-why">Why ?</div>
-      <div class="hud-langs"></div>
-      <div class="explore-block">
+      <div className="hud-title">Samira's journey</div>
+      <div className="hud-why">Why ?</div>
+      <div className="hud-langs"></div>
+      <div className="explore-block">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam minima exercitationem, sunt ad odit suscipit cum commodi earum dolore, libero esse autem corrupti quidem accusantium. Sit eius voluptates pariatur aut!</p>
-        <div class="explore-btn">EXPLORE</div>
+        <div className="explore-btn">EXPLORE</div>
       </div>
 
     </div>
@@ -116,7 +119,7 @@ function Cards() {
     const radius = 2; // radius of the spiral
 
     if(loopPoint == 1){
-
+      // We set z to zero and we play with x-axis
       position.x =  radius * sense ;
       position.z = 0 ;
 
@@ -124,7 +127,7 @@ function Cards() {
       if(sense == 1){ position.rotationY = Math.PI/2 + Math.PI }else if(sense == -1){ position.rotationY = Math.PI/2 }
 
     }else if (loopPoint == -1){
-
+      // We set x to zero and we play with z-axis
       position.x =  0 ;
       position.z = radius * senseZ ;
 
@@ -139,6 +142,7 @@ function Cards() {
   return Array.from({ length: numberOfCards  , sense, senseZ }, (_, i) => {
 
     if(loopPoint == 1){ sense *= -1; }else if (loopPoint == -1){ senseZ *= -1; }
+    // We switch loopPoint to adjust the axis we are based on(x or z axis)
     loopPoint *= -1;
 
     // 
