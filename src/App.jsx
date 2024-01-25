@@ -10,11 +10,6 @@ import Statue from './Statue';
 import TextCard from './TextCard.jsx';
 import Spiral from './Spiral.jsx';
 
-let sense = 1; // 1 or -1 to set x value
-let senseZ = -1; // 1 or -1 tp set z value
-let loopPoint = 1;// 
-let pic_between_text_gap = 0.2;
-
 function App() {
 
   const [scrollY, setScrollY] = useState(0);
@@ -110,6 +105,11 @@ function Axis(props) {
 }
 
 function Cards() {
+  let sense = -1; // 1 or -1 to set x value
+  let senseZ = 1; // 1 or -1 tp set z value
+  let loopPoint = 1;// 
+  let pic_between_text_gap = 0.15;
+
   const numberOfCards = 10;
   var objPerTurn = 2;
   let lastPosition = 0;
