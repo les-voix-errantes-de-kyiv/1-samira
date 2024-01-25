@@ -63,7 +63,7 @@ function App() {
         <ambientLight intensity={1} />
         <spotLight position={[10, 10, 10]} angle={0.45} penumbra={1} decay={0} intensity={2} />
         <pointLight position={[-10, -10, -10]} decay={1} intensity={1} />
-        <ScrollControls pages={12} >
+        <ScrollControls pages={40}  >
           <Rig rotation={[0, Math.PI, 0]}>
             {/*<Spiral rotation={[0, Math.PI  , 0] }position={[0, 0, 0]} scale={[0.055, 0.055, 0.055]} scrollY={scrollY}  />*/}
             <Cards />
@@ -110,7 +110,7 @@ function Cards() {
   let loopPoint = 1;// 
   let pic_between_text_gap = 0.15;
 
-  const numberOfCards = 10;
+  const numberOfCards = 60;
   var objPerTurn = 2;
   let lastPosition = 0;
 
@@ -163,7 +163,7 @@ function Cards() {
     }
   
     const cardUrl = `/img${Math.floor(i % 10) + 1}_.png`;
-    const textUrl = `/img1_txt.png`;
+    const textUrl = `/img${Math.floor(i % 10) + 1}_txt.png`;
     // For text, you can set a default text or modify it based on your requirements
     return (
       // <group key={i}>

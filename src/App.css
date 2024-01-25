@@ -21,6 +21,3 @@
     touch-action: none;
     animation: fade-in 8s ease 1s forwards;
 }
-.annotation{
-  position: relative;
-}
