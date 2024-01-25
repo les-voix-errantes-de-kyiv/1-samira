@@ -58,7 +58,7 @@ function App() {
 
     </div>
 
-      <Canvas camera={{ position: [0, 2, 40], fov: 15 }}>
+      <Canvas camera={{ position: [0, 2, 40], rotation:[15,0,0], fov: 15 }}>
 
         <ambientLight intensity={1} />
         <spotLight position={[10, 10, 10]} angle={0.45} penumbra={1} decay={0} intensity={2} />
@@ -69,7 +69,7 @@ function App() {
             <Cards />
           </Rig>
           <Axis rotation={[0, 0, 0]}>
-            <Statue position={[0,-31.3,0]} />
+            <Statue position={[0,-0.7,0]} />
           </Axis>
           {/* <gridHelper args={[10, 10]} /> */}
         </ScrollControls>
