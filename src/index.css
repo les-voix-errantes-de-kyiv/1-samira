@@ -1,3 +1,23 @@
+
+
+@font-face {
+  font-family: "BasicLight";
+  src: url("/src/assets/fonts/MonumentExtended-UltraLight.otf");
+  font-weight: 400;
+}
+
+
+@font-face {
+  font-family: "BasicBold";
+  src: url("/src/assets/fonts/MonumentExtended-Bold.otf");
+}
+
+@font-face {
+  font-family: "PPNeue-Light";
+  src: url("/src/assets/fonts/ppneuemontreal-medium.otf");
+}
+
+
 html {
   position: relative;
   top: 0;
@@ -65,4 +85,54 @@ body {
   left: -5px;
   position: absolute;
   transition: width 0.5s ease;
+}
+
+.hud-cust{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  color: white;
+  font-weight: 700;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hud-title{
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  font-family: "BasicBold";
+  font-size: 16px;
+}
+
+.hud-why{
+  position: absolute;
+  top: 40px;
+  right: 60px;
+  font-family: "BasicBold";
+  font-size: 16px;
+}
+
+.explore-block{
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  font-family: "BasicLight";
+  font-weight: 400;
+  max-width: 30%;
+  font-size:16px;
+}
+
+.explore-block p{
+  font-family: "PPNeue-Light";
+  font-weight: 400;
+}
+
+.explore-btn{
+  font-family: "BasicBold";
+  font-size:16px;
+  text-decoration: none;
+  color: white;
+  border-bottom: 1px solid white;
+  width: fit-content;
 }

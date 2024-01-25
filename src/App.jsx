@@ -15,24 +15,51 @@ let senseZ = -1; // 1 or -1
 let loopPoint = 1;
 
 function App() {
+
   const [scrollY, setScrollY] = useState(0);
-  
+  const [opacity, setOpacity] = useState(1); // Opacité initiale
+
   useEffect(() => {
+
+    const test = document.querySelector('div.canvas-container:last-child')
+    console.log(test)
+
     const handleScroll = () => {
       const newScrollY = window.scrollY;
+
+      // Calculer l'opacité en fonction de la position du scroll
+      const newOpacity = 1 - newScrollY / 500; // Modifiez 500 selon vos besoins
+
+      // Limiter l'opacité entre 0 et 1
+      const limitedOpacity = Math.max(0, Math.min(1, newOpacity));
+
       setScrollY(newScrollY);
+      setOpacity(limitedOpacity);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    test.addEventListener('scroll', handleScroll);
   
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      test.removeEventListener('scroll', handleScroll);
     };
-  }, [scrollY]);
+  }, [scrollY,opacity]);
 
   return (
     <div className="canvas-container">
-      <Canvas gl={{alpha: true}} camera={{ position: [0, 2, 40], fov: 15 }}>
+
+    <div class="hud-cust" id="hudcust" style={{opacity}}>
+
+      <div class="hud-title">Samira's journey</div>
+      <div class="hud-why">Why ?</div>
+      <div class="hud-langs"></div>
+      <div class="explore-block">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam minima exercitationem, sunt ad odit suscipit cum commodi earum dolore, libero esse autem corrupti quidem accusantium. Sit eius voluptates pariatur aut!</p>
+        <div class="explore-btn">EXPLORE</div>
+      </div>
+
+    </div>
+
+      <Canvas camera={{ position: [0, 2, 40], fov: 15 }}>
         <fog attach="fog" args={['#a79', 8.5, 12]} />
         <ambientLight intensity={1} />
         <spotLight position={[10, 10, 10]} angle={0.45} penumbra={1} decay={0} intensity={2} />
@@ -84,14 +111,14 @@ function Cards() {
   let lastPosition = 0;
 
   const cardPosition = (i, lastPosition, sense, senseZ) => {
-    const step = 1.3;
+    const step = 1.15;
     const position = new THREE.Vector3();
     const radius = 2; // radius of the spiral
+
     if(loopPoint == 1){
 
       position.x =  radius * sense ;
-      // position.z = 0;
-      position.z = radius * senseZ ;
+      position.z = 0 ;
 
 
       if(sense == 1){ position.rotationY = Math.PI/2 + Math.PI }else if(sense == -1){ position.rotationY = Math.PI/2 }
@@ -109,7 +136,7 @@ function Cards() {
     return position;
   };
 
-  return Array.from({ length: numberOfCards * 2 , sense, senseZ }, (_, i) => {
+  return Array.from({ length: numberOfCards  , sense, senseZ }, (_, i) => {
 
     if(loopPoint == 1){ sense *= -1; }else if (loopPoint == -1){ senseZ *= -1; }
     loopPoint *= -1;
@@ -124,21 +151,30 @@ function Cards() {
     }
   
     const cardUrl = `/img${Math.floor(i % 10) + 1}_.png`;
+    const textUrl = `/img1_txt.png`;
     // For text, you can set a default text or modify it based on your requirements
-    const text = `HOLA`;
     return (
+      // <group key={i}>
+      //   <Card
+      //       url= {i % 2 === 0 ? cardUrl : textUrl}
+      //       position= {[position.x, position.y, position.z]}
+      //       rotation={i % 2 === 0 ? [0, position.rotationY, 0] : [0, Math.PI / 2, 0 ]}
+      //     />
+          
+      // </group>
       <group key={i}>
-        {i % 2 === 0 ? (
+        {i % 2 === 0 ? ( // Check if i is even
           <Card
             url={cardUrl}
             position={[position.x, position.y, position.z]}
-            rotation={[0, position.rotationY, 0]}
+            rotation={[0,0, 0]}
+            text={`Card ${i}`}
           />
-        ) : (
-          <Card
-            url={cardUrl}
-            position={[position.x, position.y, position.z]}
-            rotation={[0, position.rotationY, 0]}
+        ) : ( // i is odd
+          <TextCard
+          url={textUrl}
+          position={[position.x, position.y, position.z]}
+          rotation={[0, Math.PI /2 * loopPoint, 0]}
           />
         )}
       </group>
