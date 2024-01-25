@@ -84,7 +84,7 @@ function Cards() {
   let lastPosition = 0;
 
   const cardPosition = (i, lastPosition, sense, senseZ) => {
-    const step = 1.3;
+    const step = 1.15;
     const position = new THREE.Vector3();
     const radius = 1.5; // radius of the spiral
 
