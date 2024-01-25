@@ -90,7 +90,7 @@ function Cards() {
     // position.y = lastPosition + Math.sin(angleStep * i) * radius * 0.1;
     // position.z = (Math.sin(angleStep * i) * radius) / (Math.PI * 2) * -0.1;
     position.x =  radius * sense ;
-    position.y = -(i * step + 1) + 3// y is always negative
+    position.y = -(i * step + 1) + 2.5// y is always negative
     position.z = radius * sense;
     // console.log("position: " + i, position);
     return position;

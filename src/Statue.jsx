@@ -14,7 +14,7 @@ const Statue = () => {
 
         console.log('Model Loaded:', gltf.scene);
 
-        gltf.scene.scale.set(.8, .8, .8);
+        gltf.scene.scale.set(1.1, 1.1, 1.1);
         gltf.scene.position.set(0, 0, 0);
 
         console.log('Model Dimensions:', gltf.scene.scale);

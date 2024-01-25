@@ -14,9 +14,9 @@ const Spiral = (props) => {
     const T = 2; // twists of the spiral
     const heightSegments = 1000;
     const radialSegments = 32;
-    const slope = 80;
+    const slope = 280;
     let s = 0;
-    const geometry = new THREE.CylinderGeometry( rTop, rBtm, T * Math.PI * 2, radialSegments, heightSegments, true );
+    const geometry = new THREE.CylinderGeometry( rTop, rBtm, T * Math.PI * 2, radialSegments, heightSegments, false );
     const position = geometry.attributes.position;
     geometry.translate( R,  Math.PI / 2, 0 );
     const v = new THREE.Vector3( );
