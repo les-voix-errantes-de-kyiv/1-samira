@@ -167,7 +167,7 @@ function Cards() {
           
       // </group>
       <group key={i}>
-        {i % 2 === 0 ? ( // Check if i is even
+        {/* {i % 2 === 0 ? ( // Check if i is even
           <Card
             url={cardUrl}
             position={[position.x, position.y, position.z]}
@@ -180,7 +180,19 @@ function Cards() {
           position={[position.x, position.y, position.z]}
           rotation={[0, position.rotationY, 0]}
           />
-        )}
+        )} */}
+        <Card
+          key={i}
+          url={`/img${Math.floor(i % 10) + 1}_.png`}
+          position={[position.x, position.y, position.z]}
+          text={`Card ${i}`}
+          rotation={[0,  position.rotationY, 0]}
+        />
+        <TextCard
+          url={textUrl}
+          position={[position.x -0.1, position.y - 0.1, position.z +( 0.3)* -loopPoint]}
+          rotation={[0, 0, 0]}
+          />
       </group>
     );
 

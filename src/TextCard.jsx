@@ -18,15 +18,16 @@ export default function Card({ url, ...props }) {
 //     easing.damp(ref.current.material, 'zoom', hovered ? 1 : 1.5, 0.2, delta);
 //   });
   
-//   const materialProps = {
-//     transparent: true,
-//     opacity: 1, // Adjust the opacity as needed
-//   };
+  const materialProps = {
+    transparent: true,
+    opacity: 1, // Adjust the opacity as needed
+    blending: THREE.NormalBlending,
+  };
 
 
 
   return (
-      <Image ref={ref} url={url} side={THREE.DoubleSide} {...props}>
+      <Image ref={ref} url={url} side={THREE.DoubleSide} {...materialProps} {...props}>
         <bentPlaneGeometry args={[0.1, 2, 1.2, 40, 20]} />
       </Image>      
   );
