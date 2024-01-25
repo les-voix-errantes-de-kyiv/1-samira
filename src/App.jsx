@@ -59,7 +59,7 @@ function App() {
     </div>
 
       <Canvas camera={{ position: [0, 2, 40], fov: 15 }}>
-        <fog attach="fog" args={['#a79', 8.5, 12]} />
+
         <ambientLight intensity={1} />
         <spotLight position={[10, 10, 10]} angle={0.45} penumbra={1} decay={0} intensity={2} />
         <pointLight position={[-10, -10, -10]} decay={1} intensity={1} />
@@ -69,12 +69,12 @@ function App() {
             <Cards />
           </Rig>
           <Axis rotation={[0, 0, 0]}>
-            <Statue />
+            <Statue position={[0,-31.3,0]} />
           </Axis>
           {/* <gridHelper args={[10, 10]} /> */}
         </ScrollControls>
         
-        { /*<OrbitControls />*/ }
+         {/* <OrbitControls />  */}
       </Canvas>
     </div>
   );
