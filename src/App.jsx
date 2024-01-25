@@ -10,8 +10,8 @@ import Statue from './Statue';
 import TextCard from './TextCard.jsx';
 import Spiral from './Spiral.jsx';
 
-let sense = -1; // 1 or -1
-let senseZ = 1; // 1 or -1
+let sense = 1; // 1 or -1
+let senseZ = -1; // 1 or -1
 let loopPoint = 1;
 
 function App() {
