@@ -10,7 +10,7 @@ const Statue = () => {
   useEffect(() => {
     const loader = new GLTFLoader();
 
-    loader.load('/src/assets/models/Test07.glb', (gltf) => {
+    loader.load('./assets/models/Test07.glb', (gltf) => {
 
         console.log('Model Loaded:', gltf.scene);
 
