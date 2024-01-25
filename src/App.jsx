@@ -9,7 +9,6 @@ import { easing , geometry} from 'maath'
 import Statue from './Statue';
 import TextCard from './TextCard.jsx';
 import Spiral from './Spiral.jsx';
-
 let sense = 1; // 1 or -1 to set x value
 let senseZ = -1; // 1 or -1 tp set z value
 let loopPoint = 1;// 
