@@ -6,11 +6,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React</title>
     <script src="/src/scripts/loader.js" defer></script>
+    <style>
+
+      @font-face {
+        font-family: "BasicLight";
+        src: url("/src/assets/fonts/MonumentExtended-UltraLight.otf");
+        font-weight: 400;
+      }
+
+
+      @font-face {
+        font-family: "BasicBold";
+        src: url("/src/assets/fonts/MonumentExtended-Bold.otf");
+      }
+
+      @font-face {
+        font-family: "PPNeue-Light";
+        src: url("/src/assets/fonts/ppneuemontreal-medium.otf");
+      }
+
+
+      body{background-color: black;}
+
+      .loadingWrapper{
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+      }
+
+      .elementload{
+        color:white;
+        text-align: center;
+      }
+
+      .progress-cont{
+        width: 65%;
+        border: 3px white solid;
+        margin: 0 auto;
+        height: 10px;
+        position: relative;
+      }
+
+      .progressbar{
+        width: calc(0% - 5px);
+        background-color: white;
+        margin: 7px;
+        height: 6px;
+        top: -5px;
+        left: -5px;
+        position: absolute;
+        transition: width 0.5s ease;
+      }
+
+      #load_text{
+        font-family: "BasicBold";
+        font-size:16px;
+        font-weight: 700;
+      }
+
+    </style>
   </head>
   <body>
     <div class="loadingWrapper" id="loadingWrapper">
       <div class="elementload">
-        <img src="/src/assets/test_img.png"/>
+        <img src="/src/assets/icon_white.png"/>
         <div class="progress-cont">
           <div class="progressbar" id="progressbar"></div>
         </div>
