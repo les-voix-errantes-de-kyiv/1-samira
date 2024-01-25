@@ -52,9 +52,9 @@
       .progress-cont{
         width: 65%;
         border: 3px white solid;
-        margin: 0 auto;
         height: 10px;
         position: relative;
+        margin: 7px auto;
       }
 
       .progressbar{
@@ -69,8 +69,15 @@
       }
 
       #load_text{
-        font-family: "BasicBold";
+        font-family: "PPNeue-Light";
         font-size:16px;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .title-loader{
+        font-family: "BasicBold";
+        font-size:18px;
         font-weight: 700;
       }
 
@@ -79,7 +86,8 @@
   <body>
     <div class="loadingWrapper" id="loadingWrapper">
       <div class="elementload">
-        <img src="./assets/icon_white.png"/>
+        <!--<img src="./assets/icon_white.png"/>-->
+        <div class="title-loader">Samira's Journey</div>
         <div class="progress-cont">
           <div class="progressbar" id="progressbar"></div>
         </div>
