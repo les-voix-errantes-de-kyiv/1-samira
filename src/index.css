@@ -139,3 +139,15 @@ body {
   border-bottom: 1px solid black;
   width: fit-content;
 }
+
+
+@media only screen and (max-width: 900px) {
+  .explore-block{
+    max-width: 80%;
+  }
+
+  .hud-why{
+    right: 40px;
+    top: 40px;
+  }
+}

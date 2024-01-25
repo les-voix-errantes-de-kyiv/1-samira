@@ -1,43 +1,28 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { useFrame, Canvas } from '@react-three/fiber';
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader';
+import React, { useRef } from "react";
+import { useGLTF } from "@react-three/drei";
 
-const Statue = () => {
-  const modelRef = useRef();
-  const [modelLoaded, setModelLoaded] = useState(false);
-
-  useEffect(() => {
-    const loader = new GLTFLoader();
-
-    loader.load('./assets/models/Test07.glb', (gltf) => {
-
-        console.log('Model Loaded:', gltf.scene);
-
-        gltf.scene.scale.set(1.1, 1.1, 1.1);
-        gltf.scene.position.set(0, 0, 0);
-
-        console.log('Model Dimensions:', gltf.scene.scale);
-        console.log('Model Position:', gltf.scene.position);
-
-        modelRef.current = gltf.scene;
-        setModelLoaded(true);
-        console.log('Finsh load:', gltf.scene.position);
-
-    }, undefined, (error) => {
-      console.error(error);
-    });
-  }, []); // Assurez-vous de ne charger le modèle qu'une seule fois au montage du composant
-
-  useFrame(() => {
-    // Code à exécuter à chaque frame (rafraîchissement de la scène)
-    // Vous pouvez ajouter des animations ou des mises à jour ici
-    // console.log(modelRef.current.position);
-  });
-
+export default function Statue(props) {
+  const { nodes, materials } = useGLTF("./assets/models/ExportFinal.glb");
   return (
-    modelLoaded ? <primitive object={modelRef.current} /> : null
+    <group {...props} dispose={null}>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Remesh01.geometry}
+        material={materials["Snow Mountain"]}
+        position={[0.032, 1.817, 0.048]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Socle001.geometry}
+        material={materials["Material.002"]}
+        position={[-0.009, 0.166, -0.1]}
+        rotation={[0, -0.462, 0]}
+        scale={1.056}
+      />
+    </group>
   );
-};
+}
 
-export default Statue;
+useGLTF.preload("/ExportFinal.glb");
