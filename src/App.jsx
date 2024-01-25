@@ -13,6 +13,7 @@ import Spiral from './Spiral.jsx';
 let sense = 1; // 1 or -1 to set x value
 let senseZ = -1; // 1 or -1 tp set z value
 let loopPoint = 1;// 
+let pic_between_text_gap = 0.2;
 
 function App() {
 
@@ -123,6 +124,9 @@ function Cards() {
       position.x =  radius * sense ;
       position.z = 0 ;
 
+      position.xText =  radius * sense + (pic_between_text_gap * sense) ;
+      position.zText = 0 ;
+
 
       if(sense == 1){ position.rotationY = Math.PI/2 + Math.PI }else if(sense == -1){ position.rotationY = Math.PI/2 }
 
@@ -131,10 +135,14 @@ function Cards() {
       position.x =  0 ;
       position.z = radius * senseZ ;
 
+      position.xText =  0 ;
+      position.zText = radius * senseZ + (pic_between_text_gap * senseZ) ;
+
       if(senseZ == 1){ position.rotationY = Math.PI*2 + Math.PI }else if(senseZ == -1){ position.rotationY = Math.PI*2 }
 
     }
     position.y = -(i * step + 1) + 2.5// y is always negative (decreasing)
+    position.yText = -(i * step + 1) + 2.5
     // console.log("position: " + i, position);
     return position;
   };
@@ -190,8 +198,8 @@ function Cards() {
         />
         <TextCard
           url={textUrl}
-          position={[position.x -0.1, position.y - 0.1, position.z +( 0.3)* -loopPoint]}
-          rotation={[0, 0, 0]}
+          position={[position.xText, position.yText, position.zText]}
+          rotation={[0, position.rotationY + Math.PI, 0]}
           />
       </group>
     );
