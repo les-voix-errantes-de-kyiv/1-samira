@@ -15,23 +15,50 @@ let senseZ = -1; // 1 or -1
 let loopPoint = 1;
 
 function App() {
+
   const [scrollY, setScrollY] = useState(0);
-  
+  const [opacity, setOpacity] = useState(1); // Opacité initiale
+
   useEffect(() => {
+
+    const test = document.querySelector('div.canvas-container:last-child')
+    console.log(test)
+
     const handleScroll = () => {
       const newScrollY = window.scrollY;
+
+      // Calculer l'opacité en fonction de la position du scroll
+      const newOpacity = 1 - newScrollY / 500; // Modifiez 500 selon vos besoins
+
+      // Limiter l'opacité entre 0 et 1
+      const limitedOpacity = Math.max(0, Math.min(1, newOpacity));
+
       setScrollY(newScrollY);
+      setOpacity(limitedOpacity);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    test.addEventListener('scroll', handleScroll);
   
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      test.removeEventListener('scroll', handleScroll);
     };
-  }, [scrollY]);
+  }, [scrollY,opacity]);
 
   return (
     <div className="canvas-container">
+
+    <div class="hud-cust" id="hudcust" style={{opacity}}>
+
+      <div class="hud-title">Samira's journey</div>
+      <div class="hud-why">Why ?</div>
+      <div class="hud-langs"></div>
+      <div class="explore-block">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam minima exercitationem, sunt ad odit suscipit cum commodi earum dolore, libero esse autem corrupti quidem accusantium. Sit eius voluptates pariatur aut!</p>
+        <div class="explore-btn">EXPLORE</div>
+      </div>
+
+    </div>
+
       <Canvas camera={{ position: [0, 2, 40], fov: 15 }}>
         <fog attach="fog" args={['#a79', 8.5, 12]} />
         <ambientLight intensity={1} />
