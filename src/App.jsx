@@ -12,41 +12,10 @@ import Spiral from './Spiral.jsx';
 
 function App() {
 
-  const [scrollY, setScrollY] = useState(0);
-  const [opacity, setOpacity] = useState(1); // Opacité initiale
-
-  useEffect(() => {
-
-    const test = document.querySelector('div.canvas-container > div:last-child > div:last-child div')
-
-    const handleScroll = () => {
-      const newScrollY = test.scrollTop;
-
-      console.log("scroll "+newScrollY)
-
-      // Calculer l'opacité en fonction de la position du scroll
-      const newOpacity = 1 - newScrollY / 500; // Modifiez 500 selon vos besoins
-
-      // Limiter l'opacité entre 0 et 1
-      const limitedOpacity = Math.max(0, Math.min(1, newOpacity));
-
-      setScrollY(newScrollY);
-      setOpacity(limitedOpacity);
-    };
-
-    console.log("el "+test)
-
-    window.addEventListener('scroll', handleScroll);
-  
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [scrollY,opacity]);
-
   return (
     <div className="canvas-container">
 
-    <div className="hud-cust" id="hudcust" style={{opacity}}>
+    <div className="hud-cust" id="hudcust" >
 
       <div className="hud-title">Samira's journey</div>
       <div className="hud-why">Why ?</div>
@@ -151,7 +120,7 @@ function Cards() {
   };
 
   return Array.from({ length: numberOfCards  , sense, senseZ }, (_, i) => {
-
+    console.log('i: ', i)
     if(loopPoint == 1){ sense *= -1; }else if (loopPoint == -1){ senseZ *= -1; }
     // We switch loopPoint to adjust the axis we are based on(x or z axis)
     loopPoint *= -1;
