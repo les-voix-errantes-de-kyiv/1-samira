@@ -171,14 +171,14 @@ function Cards() {
           <Card
             url={cardUrl}
             position={[position.x, position.y, position.z]}
-            rotation={[0,0, 0]}
+            rotation={[0, position.rotationY, 0]}
             text={`Card ${i}`}
           />
         ) : ( // i is odd
           <TextCard
           url={textUrl}
           position={[position.x, position.y, position.z]}
-          rotation={[0, Math.PI /2 * loopPoint, 0]}
+          rotation={[0, position.rotationY, 0]}
           />
         )}
       </group>
