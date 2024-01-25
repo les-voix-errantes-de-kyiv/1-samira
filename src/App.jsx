@@ -67,7 +67,7 @@ function App() {
         <ambientLight intensity={1} />
         <spotLight position={[10, 10, 10]} angle={0.45} penumbra={1} decay={0} intensity={2} />
         <pointLight position={[-10, -10, -10]} decay={1} intensity={1} />
-        <ScrollControls pages={8} >
+        <ScrollControls pages={12} >
           <Rig rotation={[0, Math.PI, 0]}>
             {/*<Spiral rotation={[0, Math.PI  , 0] }position={[0, 0, 0]} scale={[0.055, 0.055, 0.055]} scrollY={scrollY}  />*/}
             <Cards />
@@ -116,18 +116,13 @@ function Cards() {
   const cardPosition = (i, lastPosition, sense, senseZ) => {
     const step = 1.15;
     const position = new THREE.Vector3();
-    const radius = 1.5; // radius of the spiral
-
-    // let angleStep = (Math.PI * 4) / objPerTurn;
-
-    // position.x = (Math.cos(angleStep * i) * radius ) * 0.1 - .8;
-    // position.y = lastPosition + Math.sin(angleStep * i) * radius * 0.1;
-    // position.z = (Math.sin(angleStep * i) * radius) / (Math.PI * 2) * -0.1;
+    const radius = 2; // radius of the spiral
 
     if(loopPoint == 1){
       // We set z to zero and we play with x-axis
       position.x =  radius * sense ;
-      position.z = 0;
+      position.z = 0 ;
+
 
       if(sense == 1){ position.rotationY = Math.PI/2 + Math.PI }else if(sense == -1){ position.rotationY = Math.PI/2 }
 
@@ -139,38 +134,56 @@ function Cards() {
       if(senseZ == 1){ position.rotationY = Math.PI*2 + Math.PI }else if(senseZ == -1){ position.rotationY = Math.PI*2 }
 
     }
-
     position.y = -(i * step + 1) + 2.5// y is always negative (decreasing)
-
-
     // console.log("position: " + i, position);
     return position;
   };
 
-  return Array.from({ length: numberOfCards, sense, senseZ }, (_, i) => {
+  return Array.from({ length: numberOfCards  , sense, senseZ }, (_, i) => {
 
     if(loopPoint == 1){ sense *= -1; }else if (loopPoint == -1){ senseZ *= -1; }
     // We switch loopPoint to adjust the axis we are based on(x or z axis)
     loopPoint *= -1;
 
-    console.log("sense "+sense)
-
+    // 
     const position = cardPosition(i, lastPosition, sense, senseZ); // Call the function to get the position
     lastPosition = position.y;
-    console.log("Card Position: " + i, position);
+    if (i % 2 === 0 ){
+      // console.log('Position Image Card: ', position)
+    } else {
+      console.log('Position Text Card: ', position)
+    }
   
     const cardUrl = `/img${Math.floor(i % 10) + 1}_.png`;
     const textUrl = `/img1_txt.png`;
-    if (!textUrl || !cardUrl) return null;
+    // For text, you can set a default text or modify it based on your requirements
     return (
-      <Card
-        key={i}
-        url={`/img${Math.floor(i % 10) + 1}_.jpg`}
-        position={[position.x, position.y, position.z]}
-        text={`Card ${i}`}
-        rotation={[0,  position.rotationY, 0]}
-      />
+      // <group key={i}>
+      //   <Card
+      //       url= {i % 2 === 0 ? cardUrl : textUrl}
+      //       position= {[position.x, position.y, position.z]}
+      //       rotation={i % 2 === 0 ? [0, position.rotationY, 0] : [0, Math.PI / 2, 0 ]}
+      //     />
+          
+      // </group>
+      <group key={i}>
+        {i % 2 === 0 ? ( // Check if i is even
+          <Card
+            url={cardUrl}
+            position={[position.x, position.y, position.z]}
+            rotation={[0,0, 0]}
+            text={`Card ${i}`}
+          />
+        ) : ( // i is odd
+          <TextCard
+          url={textUrl}
+          position={[position.x, position.y, position.z]}
+          rotation={[0, Math.PI /2 * loopPoint, 0]}
+          />
+        )}
+      </group>
     );
+
   });
   
 }

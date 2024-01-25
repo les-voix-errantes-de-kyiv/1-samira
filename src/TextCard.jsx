@@ -1,20 +1,33 @@
 import React, { useRef, useState } from 'react';
+import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { easing } from 'maath';
 import { Image } from '@react-three/drei';
 import './Util';
 
 export default function Card({ url, ...props }) {
-    const ref = useRef();
-    
-    const materialProps = {
-        transparent: true,
-        opacity: 1, // Adjust the opacity as needed
-    };
+  const ref = useRef();
+//   const [hovered, hover] = useState(false);
 
-    return (
-            <Image ref={ref} url={url}  side={THREE.DoubleSide} 
-            materialProps = {materialProps}{...props}>
-                <bentPlaneGeometry args={[0.1, 1.5, 1, 40, 20]} />
-            </Image>      
-    );
+//   const pointerOver = (e) => (e.stopPropagation(), hover(true));
+//   const pointerOut = () => hover(false);
+
+//   useFrame((state, delta) => {
+//     easing.damp2(ref.current.scale, hovered ? 1.15 : 1, 0.1, delta);
+//     easing.damp(ref.current.material, 'radius', hovered ? 0 : 0, 0.2, delta);
+//     easing.damp(ref.current.material, 'zoom', hovered ? 1 : 1.5, 0.2, delta);
+//   });
+  
+//   const materialProps = {
+//     transparent: true,
+//     opacity: 1, // Adjust the opacity as needed
+//   };
+
+
+
+  return (
+      <Image ref={ref} url={url} side={THREE.DoubleSide} {...props}>
+        <bentPlaneGeometry args={[0.1, 2, 1.2, 40, 20]} />
+      </Image>      
+  );
 }

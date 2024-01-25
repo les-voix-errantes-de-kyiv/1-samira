@@ -13,7 +13,7 @@ export default function Card({ url, ...props }) {
   const pointerOut = () => hover(false);
 
   useFrame((state, delta) => {
-    easing.damp3(ref.current.scale, hovered ? 1.15 : 1, 0.1, delta);
+    easing.damp2(ref.current.scale, hovered ? 1.15 : 1, 0.1, delta);
     easing.damp(ref.current.material, 'radius', hovered ? 0 : 0, 0.2, delta);
     easing.damp(ref.current.material, 'zoom', hovered ? 1 : 1.5, 0.2, delta);
   });
@@ -29,7 +29,7 @@ export default function Card({ url, ...props }) {
       <Image ref={ref} url={url}  side={THREE.DoubleSide} 
       onPointerOver={pointerOver} onPointerOut={pointerOut}
       materialProps = {materialProps}{...props}>
-        <bentPlaneGeometry args={[0.1, 1.5, 1, 40, 20]} />
+        <bentPlaneGeometry args={[0.1, 2, 1.2, 40, 20]} />
       </Image>      
   );
 }
