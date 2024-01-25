@@ -97,13 +97,15 @@ function Cards() {
 
       position.x =  radius * sense ;
       position.z = 0;
-      position.rotationY = Math.PI/2 + Math.PI
+
+      if(sense == 1){ position.rotationY = Math.PI/2 + Math.PI }else if(sense == -1){ position.rotationY = Math.PI/2 }
 
     }else if (loopPoint == -1){
 
       position.x =  0 ;
       position.z = radius * senseZ ;
-      position.rotationY = Math.PI*2 + Math.PI
+
+      if(senseZ == 1){ position.rotationY = Math.PI*2 + Math.PI }else if(senseZ == -1){ position.rotationY = Math.PI*2 }
 
     }
 
