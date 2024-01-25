@@ -10,8 +10,8 @@ import Statue from './Statue';
 import TextCard from './TextCard.jsx';
 import Spiral from './Spiral.jsx';
 
-let sense = 1; // 1 or -1
-let senseZ = -1; // 1 or -1
+let sense = -1; // 1 or -1
+let senseZ = 1; // 1 or -1
 let loopPoint = 1;
 
 function App() {
@@ -137,7 +137,7 @@ function Cards() {
         url={`/img${Math.floor(i % 10) + 1}_.jpg`}
         position={[position.x, position.y, position.z]}
         text={`Card ${i}`}
-        rotation={[0,  (Math.PI *2), 0]}
+        rotation={[0,  position.rotationY, 0]}
       />
     );
   });
