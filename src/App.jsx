@@ -58,8 +58,8 @@ function Rig(props) {
   const ref = useRef()
   const scroll = useScroll()
   useFrame((state, delta) => {
-    ref.current.rotation.y = -scroll.offset * (Math.PI * 4) * 1.002 // Rotate contents
-    ref.current.position.y = scroll.offset * (Math.PI * 3)// Move contents
+    ref.current.rotation.y = -scroll.offset * (Math.PI * 4) * 1.002 * 6 // Rotate contents
+    ref.current.position.y = scroll.offset * (Math.PI * 3) * 6// Move contents
     state.events.update() // Raycasts every frame rather than on pointer-move
   })
   return <group ref={ref} {...props} />
