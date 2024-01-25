@@ -28,7 +28,7 @@ export default function Card({ url, ...props }) {
 
   return (
       <Image ref={ref} url={url} side={THREE.DoubleSide} {...materialProps} {...props}>
-        <bentPlaneGeometry args={[0.00000001, 2, 1.2, 40, 20]} />
+        <bentPlaneGeometry args={[0.0000001, 2, 1.2, 40, 20]} />
       </Image>      
   );
 }
