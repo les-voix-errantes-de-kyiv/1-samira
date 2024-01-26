@@ -1,11 +1,29 @@
-import React from 'react';
+import React , {useState} from 'react';
+import PopIn from './PopIn.jsx'; // Adjust the path based on your project structure
 
 const OverlayComponent = ({ isVisible, handleExploreClick }) => {
+
+const [isPopInVisible, setPopinVisible] = useState(false);
+const [isWhyVisible, setWhyVisible] = useState(true);
+const handleWhyClick = () => {
+    console.log('WHY clicked');
+    setPopinVisible(true);
+    setWhyVisible(false);
+    };
+
+    const handlePopinClose = () => {
+    console.log('Closing PopIn');
+    setPopinVisible(false);
+    setWhyVisible(true);
+    };
 return (
+    
     console.log('overlay is visible', isVisible),
     <div className={`hud-cust ${isVisible ? 'visible' : 'hidden'}`} id="hudcust">
         <div className="hud-title">SAMIRA'S JOURNEY</div>
-        <div className="hud-why">WHY ?</div>
+        <button className={`hud-why ${isWhyVisible ? 'visible' : 'hidden'}`} onClick={handleWhyClick}>
+            WHY ?
+        </button>
         <div className="hud-langs"></div>
         <div className={`explore-block ${isVisible ? 'visible' : 'hidden'}`} id='exploreBlock'>
             <p>
@@ -16,7 +34,12 @@ return (
             <div className="explore-btn" onClick={handleExploreClick}>
                 EXPLORE
             </div>
+            <div className="music-btn" onClick={handleExploreClick}>
+                Music
+            </div>
         </div>
+        <PopIn isVisible={isPopInVisible} handlePopinClose={handlePopinClose}/>
+
     </div>
 );
 };
