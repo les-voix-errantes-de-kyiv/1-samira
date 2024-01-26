@@ -99,7 +99,7 @@ function Cards() {
   let senseZ = 1; // 1 or -1 tp set z value
   let loopPoint = 1; // 
   let pic_between_text_gap = 0.15;
-  const numberOfCards = 29;
+  const numberOfCards = 29; // Total number of cards minus 1 to start from 0
   let lastPosition = 0;
 
   const cardPosition = (i, lastPosition, sense, senseZ) => {
@@ -134,7 +134,7 @@ function Cards() {
     return position;
   };
 
-  return Array.from({ length: numberOfCards  , sense, senseZ }, (_, i) => {
+  return Array.from({ length: numberOfCards +1 , sense, senseZ }, (_, i) => {
     if(loopPoint == 1){ sense *= -1; }else if (loopPoint == -1){ senseZ *= -1; }
     // We switch loopPoint to adjust the axis we are based on(x or z axis)
     loopPoint *= -1;
@@ -145,6 +145,7 @@ function Cards() {
   
     const cardUrl = `/img${i + 1}_.png`;
     const textUrl = `/img${i + 1}_txt.png`;
+    console.log(cardUrl)
     // For text, you can set a default text or modify it based on your requirements
     return (
       <group key={i}>
