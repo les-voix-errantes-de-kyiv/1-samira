@@ -33,8 +33,6 @@ html {
   scroll-behavior: smooth;
   overflow: hidden;
   color: white;
-
-
 }
 
 body {
@@ -152,6 +150,7 @@ body {
 .popin-content {
   color: white;
   height: auto;
+
   /* Customize the styles of the popin content as needed */
 }
 
@@ -303,7 +302,6 @@ body {
 }
 
 .sound-state{
-
   font-family: "BasicRegular";
   font-weight: 400;
   font-size: 16px;
@@ -315,13 +313,6 @@ body {
   height: 100%;
   background: linear-gradient(180deg, #80d0c700 57%, #80D0C7 91.35%);
 }
-
-
-
-
-
-
-
 
 .arrow-container {
   display: flex;
