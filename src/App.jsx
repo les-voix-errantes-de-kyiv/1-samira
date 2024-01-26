@@ -14,6 +14,9 @@ import Overlay from './Overlay.jsx'; // Make sure to adjust the path based on yo
 
 let cardOpacity = false
 let traveling = false;
+let music = false;
+var audio = new Audio('./assets/music/Alambari.mp3');
+
 
 // App
 function App() {
@@ -29,6 +32,29 @@ function App() {
     setOverlayVisible(false);
   };
 
+  const handleMusicBtn = () => {
+
+    const musicState = document.getElementById("sound-state")
+
+    if(music){music = false; musicState.innerHTML = "OFF";}else{music = true; musicState.innerHTML = "ON";}
+
+    console.log('clicked music : '+music);
+
+    if(music){
+      // Jouer la musique
+      audio.play();
+
+      // Vous pouvez également ajouter des événements, par exemple pour arrêter la musique après qu'elle a été jouée
+      audio.addEventListener('ended', function() {
+        console.log('La musique est terminée');
+        audio.play();
+      });
+    }else{
+      audio.pause();
+    }
+
+  };
+
   const handleScrollOffsetChange = (newScrollOffset) => {
     if(!traveling && newScrollOffset > 0){
       traveling = true
@@ -41,23 +67,9 @@ function App() {
     // gère l'apparition du menu hud quand user remonte tout en haut
   };
 
-    var audio = new Audio('./assets/music/Alambari.mp3');
-
-    // var audio = new Audio('./assets/music/Alambari.mp3');
-
-    // // Jouer la musique
-    // // audio.play();
-
-    // // Vous pouvez également ajouter des événements, par exemple pour arrêter la musique après qu'elle a été jouée
-    // audio.addEventListener('ended', function() {
-    //   console.log('La musique est terminée');
-    //   audio.play();
-    //   // Vous pouvez ajouter d'autres actions ici
-    // });
-
   return (
     <div className="app">
-      <Overlay isVisible={isOverlayVisible} handleExploreClick={handleExploreClick}  />
+      <Overlay isVisible={isOverlayVisible} handleExploreClick={handleExploreClick} handleMusicBtn={handleMusicBtn} />
       <div className="canvas-container">
         <Canvas camera={{ position: [0, 2, 40], rotation:[15,0,0], fov: 15 }}>
           <ambientLight intensity={1} />

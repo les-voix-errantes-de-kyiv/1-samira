@@ -1,7 +1,7 @@
 import React , {useState} from 'react';
 import PopIn from './PopIn.jsx'; // Adjust the path based on your project structure
 
-const OverlayComponent = ({ isVisible, handleExploreClick }) => {
+const OverlayComponent = ({ isVisible, handleExploreClick, handleMusicBtn }) => {
 
 const [isPopInVisible, setPopinVisible] = useState(false);
 const [isWhyVisible, setWhyVisible] = useState(true);
@@ -34,9 +34,11 @@ return (
             <div className="explore-btn" onClick={handleExploreClick}>
                 EXPLORE
             </div>
-            <div className="music-btn" onClick={handleExploreClick}>
-                Music
-            </div>
+        </div>
+        <div className="music-btn" onClick={handleMusicBtn}>
+            <div class="sound-text">Sound</div>
+            <div class="sound-separator">―</div>
+            <div class="sound-state" id="sound-state">OFF</div>
         </div>
         <PopIn isVisible={isPopInVisible} handlePopinClose={handlePopinClose}/>
 

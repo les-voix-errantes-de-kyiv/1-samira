@@ -279,3 +279,36 @@ body {
 .explore-btn:hover:after { transform: scaleX(1); }
 .explore-btn:after{  transform-origin:  0% 50%; }
 
+.music-btn{
+  position: absolute;
+  bottom: 40px;
+  right: 60px;
+
+  display: flex;
+  gap: 10px;
+
+  font-family: "BasicRegular";
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  pointer-events: all;
+  transition: opacity 0.3s ease-in-out; /* Add a transition for a smoother effect */
+}
+
+.sound-text{
+
+  font-family: "PPNeue-Book";
+  font-weight: 400;
+  font-size: 16px;
+
+}
+
+.sound-state{
+
+  font-family: "BasicRegular";
+  font-weight: 400;
+  font-size: 16px;
+
+}
