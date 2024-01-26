@@ -39,6 +39,7 @@ function App() {
 
     if(music){
       // Jouer la musique
+      audio.currentTime = 16; // Set the starting time to 10 seconds
       audio.play();
 
       // Vous pouvez également ajouter des événements, par exemple pour arrêter la musique après qu'elle a été jouée
