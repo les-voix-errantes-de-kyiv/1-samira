@@ -11,17 +11,17 @@ Here is <strong>Samira Tymchenko’s testimony.</strong> </p>
         <div className='creditsBox'>
             <h3 className='popinTitle' >CRÉDITS :</h3>
             <div className='creditsFlex'>
-                <div className='column'>
+                <div className='column cre-left'>
                 <Credits title="SPECIAL THANKS:" items={['Samira Tymchenko', 'Zlata Tymchenko']} />
                 <Credits title="MANAGEMENT:"  items={["Oscar Motta", "IUT Bordeaux Montaigne", "MMI Bordeaux", "La Maison Ukrainienne"]} />
                 <Credits title="MUSIC:" items={["DakhaBrakha - Alambari"]} />
                 <Credits title="3D SCAN:" items={["Polycam"]} />
 
                 </div>
-                <div className='column'>
+                <div className='column cre-right'>
                     <Credits title="CREATIVE DIRECTION:" items={['Akkouche Anaïs', 'Marilleau Thomas', 'Millot Audrey']} />
                     <Credits title="DEVELOPMENT:"  items={["Despouys André", "Duverneuil Lucas"]} />
-                    <Credits title="DIGITAL STRATEGY:" items={["Delavier Anaïs"]} />
+                    <Credits title="DIGITAL STRATEGY:" items={["Delavier Anaïs","Bories Ly Luu"]} />
                     <Credits title="3D:" items={["Akkouche Anaïs", "Marilleau Thomas"]} />
                 </div>
             </div>

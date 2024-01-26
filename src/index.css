@@ -201,7 +201,6 @@ body {
 }
 
 .credit{
-  text-align: left;
   line-height: normal;
   width: 100%;
 }
@@ -385,7 +384,13 @@ body {
   }
 }
 
+.cre-left{
+  text-align: right;
+}
 
+.cre-right{
+  text-align: left;
+}
 
 
 
