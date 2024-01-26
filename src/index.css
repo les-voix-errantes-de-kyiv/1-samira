@@ -135,6 +135,7 @@ body {
   right: 60px;
   display: inline-flex;
   padding: 20px;
+  z-index: 4;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -148,17 +149,19 @@ body {
 }
 @media only screen and (max-width: 900px) {
   .popin {
-    width: 80% ;
+    z-index: 4;
+    width: auto;
     margin: 0 auto ;
-    right: 5%;
+    top: 20px;
+    right: 15px;
     background: linear-gradient(160deg, #13547A 8.25%, #80D0C7 91.35%);
-
+    padding: 30px;
   }
 }
 
 .popin-content {
   color: white;
-  height: 100%;
+  height: auto;
   /* Customize the styles of the popin content as needed */
 }
 
