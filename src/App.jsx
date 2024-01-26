@@ -20,11 +20,9 @@ var audio = new Audio('./assets/music/Alambari.mp3');
 
 // App
 function App() {
-  console.log("1 "+cardOpacity)
   const [isOverlayVisible, setOverlayVisible] = useState(true);
 
   const handleExploreClick = () => {
-    console.log('clicked');
     cardOpacity = true
     console.log("2 "+cardOpacity)
     var div = document.querySelector("div.canvas-container > div:last-child > div:last-child div")
@@ -38,7 +36,6 @@ function App() {
 
     if(music){music = false; musicState.innerHTML = "OFF";}else{music = true; musicState.innerHTML = "ON";}
 
-    console.log('clicked music : '+music);
 
     if(music){
       // Jouer la musique
@@ -188,7 +185,6 @@ function Cards(cardOpacity) {
   
     const cardUrl = `/img${i + 1}_.png`;
     const textUrl = `/img${i + 1}_txt.png`;
-    console.log(cardUrl)
     // For text, you can set a default text or modify it based on your requirements
     return (
       <group key={i}>
@@ -207,7 +203,6 @@ function Cards(cardOpacity) {
           />
       </group>
     );
-
   });
   
 }
