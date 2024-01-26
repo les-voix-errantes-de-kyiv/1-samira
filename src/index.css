@@ -17,7 +17,6 @@
   src: url("./assets/fonts/ppneuemontreal-medium.otf");
 }
 
-
 html {
   position: relative;
   top: 0;
@@ -27,6 +26,7 @@ html {
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
   overflow: hidden;
+  color: white;
 
 
 }
@@ -36,13 +36,13 @@ body {
   width: 100%;
   height: 100%;
   overscroll-behavior-y: none;
-  background: url("/background.png" );
+  /* background: url("/background.png" ); */
+  background: linear-gradient(160deg, #13547A 8.25%, #80D0C7 91.35%);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   padding: 0;
   margin: 0;
 }
-
 
 #root {
   position: absolute;
@@ -53,7 +53,8 @@ body {
 .loadingWrapper{
   width: 100vw;
   height: 100vh;
-  background-color: black;
+  /* background-color: black; */
+  background: linear-gradient(160deg, #13547A 8.25%, #80D0C7 91.35%);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -94,14 +95,14 @@ body {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  color: black;
+  color: white;
   font-weight: 700;
   z-index: 2;
 
 }
 /* Apply the 'hidden' class to hide the overlay */
 .hud-cust.hidden {
-  height: 0;
+  height: min-content;
 }
 
 .hud-title{
@@ -153,8 +154,8 @@ body {
   font-family: "BasicBold";
   font-size:16px;
   text-decoration: none;
-  color: black;
-  border-bottom: 1px solid black;
+  color: white;
+  border-bottom: 1px solid white;
   width: fit-content;
   cursor: pointer;
 }

@@ -1,16 +1,18 @@
 
 import * as THREE from 'three'
 import './App.css';
-import React, { useEffect, useState, useRef, us } from 'react';
-import { Canvas, _roots, useFrame , useThree} from '@react-three/fiber'
+import React, { useState, useRef } from 'react';
+import { Canvas, _roots, useFrame } from '@react-three/fiber'
+import {  ScrollControls, useScroll } from '@react-three/drei';
+// import { easing , geometry} from 'maath'
+
+// Components
 import Card from './Card.jsx';
-import { Image, Environment, ScrollControls, useScroll, useTexture, OrbitControls } from '@react-three/drei';
-import { easing , geometry} from 'maath'
 import Statue from './Statue';
 import TextCard from './TextCard.jsx';
-import Spiral from './Spiral.jsx';
 import Overlay from './Overlay.jsx'; // Make sure to adjust the path based on your project structure
 
+// App
 function App() {
   const [isOverlayVisible, setOverlayVisible] = useState(true);
 
@@ -22,26 +24,19 @@ function App() {
   return (
     <div className="app">
       <Overlay isVisible={isOverlayVisible} handleExploreClick={handleExploreClick} />
-
       <div className="canvas-container">
-
         <Canvas camera={{ position: [0, 2, 40], rotation:[15,0,0], fov: 15 }}>
-
           <ambientLight intensity={1} />
           <spotLight position={[10, 10, 10]} angle={0.45} penumbra={1} decay={0} intensity={2} />
           <pointLight position={[-10, -10, -10]} decay={1} intensity={1} />
           <ScrollControls pages={12}  >
             <Rig rotation={[0, Math.PI, 0]}>
-              {/*<Spiral rotation={[0, Math.PI  , 0] }position={[0, 0, 0]} scale={[0.055, 0.055, 0.055]} scrollY={scrollY}  />*/}
               <Cards />
             </Rig>
             <Axis rotation={[0, 0, 0]}>
               <Statue position={[0,-0.7,0]} />
             </Axis>
-            {/* <gridHelper args={[10, 10]} /> */}
           </ScrollControls>
-          
-          {/* <OrbitControls />  */}
         </Canvas>
       </div>
     </div>
@@ -83,7 +78,6 @@ function Cards() {
   let loopPoint = 1; // 
   let pic_between_text_gap = 0.15;
   const numberOfCards = 29;
-  var objPerTurn = 2;
   let lastPosition = 0;
 
   const cardPosition = (i, lastPosition, sense, senseZ) => {
@@ -131,29 +125,7 @@ function Cards() {
     const textUrl = `/img${i + 1}_txt.png`;
     // For text, you can set a default text or modify it based on your requirements
     return (
-      // <group key={i}>
-      //   <Card
-      //       url= {i % 2 === 0 ? cardUrl : textUrl}
-      //       position= {[position.x, position.y, position.z]}
-      //       rotation={i % 2 === 0 ? [0, position.rotationY, 0] : [0, Math.PI / 2, 0 ]}
-      //     />
-          
-      // </group>
       <group key={i}>
-        {/* {i % 2 === 0 ? ( // Check if i is even
-          <Card
-            url={cardUrl}
-            position={[position.x, position.y, position.z]}
-            rotation={[0, position.rotationY, 0]}
-            text={`Card ${i}`}
-          />
-        ) : ( // i is odd
-          <TextCard
-          url={textUrl}
-          position={[position.x, position.y, position.z]}
-          rotation={[0, position.rotationY, 0]}
-          />
-        )} */}
         <Card
           key={i}
           url={cardUrl}
