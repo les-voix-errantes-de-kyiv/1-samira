@@ -3,7 +3,7 @@ var progressbar = document.getElementById('progressbar')
 var load_text = document.getElementById('load_text')
 
 var progress = 0;
-progressbar.style.width = "calc(0% - 5px)";
+progressbar.style.width = "calc(0% - 4px)";
 load_text.innerHTML = "Chargement en cours...";
 
 window.addEventListener("DOMContentLoaded", (event) => {
