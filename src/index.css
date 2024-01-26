@@ -141,7 +141,7 @@ body {
   align-items: center;
   border-radius: 5px;
   border: 1px solid white;
-  background: rgba(255, 255, 255, 0.01);
+  background: linear-gradient(160deg, #13547A 8.25%, #5cc4b8 91.35%);
   width: 300px;
   height: fit-content;
   color: white;
@@ -179,6 +179,7 @@ body {
   border: none;
 }
 .popinTitle{
+  font-family: 'BasicLight';
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -218,6 +219,7 @@ body {
   font-weight: 400;
   width: 100%;
   list-style: none;
+  margin-top: 0;
 
 }
 .creditItem{
