@@ -21,21 +21,22 @@ function App() {
     setOverlayVisible(false);
   };
 
-    var audio = new Audio('./assets/music/Alambari.mp3');
 
-    // Jouer la musique
-    audio.play();
+    // var audio = new Audio('./assets/music/Alambari.mp3');
 
-    // Vous pouvez également ajouter des événements, par exemple pour arrêter la musique après qu'elle a été jouée
-    audio.addEventListener('ended', function() {
-      console.log('La musique est terminée');
-      audio.play();
-      // Vous pouvez ajouter d'autres actions ici
-    });
+    // // Jouer la musique
+    // // audio.play();
+
+    // // Vous pouvez également ajouter des événements, par exemple pour arrêter la musique après qu'elle a été jouée
+    // audio.addEventListener('ended', function() {
+    //   console.log('La musique est terminée');
+    //   audio.play();
+    //   // Vous pouvez ajouter d'autres actions ici
+    // });
 
   return (
     <div className="app">
-      <Overlay isVisible={isOverlayVisible} handleExploreClick={handleExploreClick} />
+      <Overlay isVisible={isOverlayVisible} handleExploreClick={handleExploreClick}  />
       <div className="canvas-container">
         <Canvas camera={{ position: [0, 2, 40], rotation:[15,0,0], fov: 15 }}>
           <ambientLight intensity={1} />

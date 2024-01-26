@@ -48,6 +48,7 @@ body {
   background-size: 100% 100%;
   padding: 0;
   margin: 0;
+  font-family: "PP Neue Montreal";
 }
 
 #root {
@@ -117,6 +118,115 @@ body {
   right: 60px;
   font-family: "BasicRegular";
   font-size: 16px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  pointer-events: all;
+  transition: opacity 0.3s ease-in-out; /* Add a transition for a smoother effect */
+
+}
+
+.popin {
+  position: absolute;
+  top: 40px;
+  right: 60px;
+  display: inline-flex;
+  padding: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid white;
+  background: rgba(255, 255, 255, 0.01);
+  width: 300px;
+  height: fit-content;
+  color: white;
+  transition: opacity 0.5s ease-in-out; /* Add a transition for a smoother effect */
+}
+@media only screen and (max-width: 900px) {
+  .popin {
+    width: 80% ;
+    margin: 0 auto ;
+    right: 5%;
+    background: linear-gradient(160deg, #13547A 8.25%, #80D0C7 91.35%);
+
+  }
+}
+
+.popin-content {
+  color: white;
+  height: 100%;
+  /* Customize the styles of the popin content as needed */
+}
+
+/* Apply the 'visible' class to show the popin */
+.popin.visible {
+  opacity: 1;
+  pointer-events: auto; /* Allow interaction with the popin */
+}
+
+/* Apply the 'hidden' class to hide the popin */
+.popin.hidden {
+  opacity: 0;
+  pointer-events: none; /* Disable interaction with the popin */
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color:  white;
+  fill: white;
+  cursor: pointer;
+  pointer-events: all;
+  background: transparent;
+  border: none;
+}
+.popinTitle{
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.creditsFlex{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.column{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.credit{
+  text-align: left;
+  line-height: normal;
+  width: 100%;
+}
+.creditTitle{
+  font-size: 16px;
+}
+.creditText{
+  font-size: 14px;
+  font-weight: 400;
+}
+.creditList{
+  font-size: 14px;
+  padding: 0;
+  font-weight: 400;
+  width: 100%;
+  list-style: none;
+
+}
+.creditItem{
+  list-style: none;
 }
 
 .explore-block{
@@ -131,13 +241,13 @@ body {
 
 }
 /* Apply the 'visible' class to show the overlay */
-.explore-block.visible {
+.explore-block.visible , .hud-why.visible{
   opacity: 1;
   pointer-events: auto; /* Allow interaction with the overlay */
 }
 
 /* Apply the 'hidden' class to hide the overlay */
-.explore-block.hidden {
+.explore-block.hidden , .hud-why.hidden{
   opacity: 0;
   pointer-events: none; /* Disable interaction with the overlay */
 }
@@ -162,9 +272,10 @@ body {
 .explore-btn:after {
   display:block;
   content: '';
-  border-bottom: solid 1px black;  
+  border-bottom: solid 1px white;  
   transform: scaleX(0);  
   transition: transform 250ms ease-in-out;
 }
 .explore-btn:hover:after { transform: scaleX(1); }
 .explore-btn:after{  transform-origin:  0% 50%; }
+
