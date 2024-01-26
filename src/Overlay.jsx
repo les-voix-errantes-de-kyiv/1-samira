@@ -29,8 +29,12 @@ return (
             War steals the past and the future.<br/>
             The only support that remains is the present moment and fragments of memories that the war did not have time to finish for lunch.”
             </p>
-            <div className="explore-btn" onClick={handleExploreClick}>
-                EXPLORE
+            <div className="btn-explore-cont">
+                <div className="arrow left"></div>
+                    <div className="explore-btn" onClick={handleExploreClick}>
+                        EXPLORE
+                    </div>
+                <div className="arrow right"></div>
             </div>
         </div>
         <div className="music-btn"  onClick={handleMusicBtn}>
