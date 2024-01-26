@@ -90,14 +90,18 @@ body {
   transition: width 0.5s ease;
 }
 
-.hud-cust{
+.hud-cust.visible{
   width: 100vw;
   height: 100vh;
   position: fixed;
   color: black;
   font-weight: 700;
   z-index: 2;
-  pointer-events: none;
+
+}
+/* Apply the 'hidden' class to hide the overlay */
+.hud-cust.hidden {
+  height: 0;
 }
 
 .hud-title{
@@ -117,18 +121,32 @@ body {
 }
 
 .explore-block{
-  position: absolute;
+  position: fixed;
   bottom: 40px;
   left: 40px;
   font-family: "BasicLight";
   font-weight: 400;
   max-width: 30%;
   font-size:16px;
+  transition: opacity 0.5s ease; /* Add a transition for a smoother effect */
+
+}
+/* Apply the 'visible' class to show the overlay */
+.explore-block.visible {
+  opacity: 1;
+  pointer-events: auto; /* Allow interaction with the overlay */
+}
+
+/* Apply the 'hidden' class to hide the overlay */
+.explore-block.hidden {
+  opacity: 0;
+  pointer-events: none; /* Disable interaction with the overlay */
 }
 
 .explore-block p{
   font-family: "PPNeue-Light";
   font-weight: 400;
+
 }
 
 .explore-btn{
@@ -138,4 +156,5 @@ body {
   color: black;
   border-bottom: 1px solid black;
   width: fit-content;
+  cursor: pointer;
 }
