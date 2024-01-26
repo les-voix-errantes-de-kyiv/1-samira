@@ -1,7 +1,7 @@
 
 import * as THREE from 'three'
 import './App.css';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Canvas, _roots, useFrame } from '@react-three/fiber'
 import {  ScrollControls, useScroll } from '@react-three/drei';
 // import { easing , geometry} from 'maath'
@@ -12,13 +12,33 @@ import Statue from './Statue';
 import TextCard from './TextCard.jsx';
 import Overlay from './Overlay.jsx'; // Make sure to adjust the path based on your project structure
 
+let cardOpacity = false
+let traveling = false;
+
 // App
 function App() {
+  console.log("1 "+cardOpacity)
   const [isOverlayVisible, setOverlayVisible] = useState(true);
 
   const handleExploreClick = () => {
     console.log('clicked');
+    cardOpacity = true
+    console.log("2 "+cardOpacity)
+    var div = document.querySelector("div.canvas-container > div:last-child > div:last-child div")
+    div.scrollTop = 3380;
     setOverlayVisible(false);
+  };
+
+  const handleScrollOffsetChange = (newScrollOffset) => {
+    if(!traveling && newScrollOffset > 0){
+      traveling = true
+    }
+    if(newScrollOffset == 0 && traveling){
+      console.log("hey "+newScrollOffset)
+      setOverlayVisible(true);
+      traveling = false
+    }
+    // gère l'apparition du menu hud quand user remonte tout en haut
   };
 
     var audio = new Audio('./assets/music/Alambari.mp3');
@@ -41,11 +61,11 @@ function App() {
           <ambientLight intensity={1} />
           <spotLight position={[10, 10, 10]} angle={0.45} penumbra={1} decay={0} intensity={2} />
           <pointLight position={[-10, -10, -10]} decay={1} intensity={1} />
-          <ScrollControls pages={12}  >
-            <Rig rotation={[0, Math.PI, 0]}>
-              <Cards />
+          <ScrollControls pages={12} >
+            <Rig rotation={[0, Math.PI, 0]} onScrollOffsetChange={handleScrollOffsetChange}>
+              <Cards cardOpacity={cardOpacity} />
             </Rig>
-            <Axis rotation={[0, 0, 0]}>
+            <Axis rotation={[0, 0, 0]} scale={[]}>
               <Statue position={[0,-0.7,0]} />
             </Axis>
           </ScrollControls>
@@ -64,15 +84,17 @@ function Rig(props) {
   const ref = useRef()
   const scroll = useScroll()
   useFrame((state, delta) => {
-    let scrollSpeed = 4;
+    let scrollSpeed = 4.7;
 
-    console.log(scroll.offset)
+    //console.log(scroll.offset)
 
     //if(scroll.offset <= 0.14553762968512687){ //stoppe le scroll à la fin du carousel
 
-      ref.current.rotation.y = -scroll.offset * (Math.PI * 4) * 1.002 * scrollSpeed // Rotate contents
-      ref.current.position.y = scroll.offset * (Math.PI * 3) * scrollSpeed // Move contents
+      ref.current.rotation.y = -scroll.offset * (Math.PI * 4) * 1.002 * scrollSpeed - 5 // Rotate contents
+      ref.current.position.y = scroll.offset * (Math.PI * 3) * scrollSpeed - 5.8 // Move contents
       state.events.update() // Raycasts every frame rather than on pointer-move
+
+      props.onScrollOffsetChange(scroll.offset);
 
     //}
 
@@ -84,16 +106,24 @@ function Rig(props) {
 function Axis(props) {
   const ref = useRef()
   const scroll = useScroll()
+
   useFrame((state, delta) => {
     ref.current.rotation.y = -scroll.offset * (Math.PI ) * 1.002 // Rotate contents
-    ref.current.scale.set(0.8 + scroll.offset * 0.7, 0.8 + scroll.offset * 0.7, 0.8 + scroll.offset * 0.7) 
+
+    if(scroll.offset > 0.12811978616869774){ //offset de la page ou on nous enmène quand on clique sur explore
+      ref.current.scale.set(0.8 + scroll.offset * 0.7, 0.8 + scroll.offset * 0.7, 0.8 + scroll.offset * 0.7) 
+    }else{
+      ref.current.scale.set(1.3 - scroll.offset * 3.2, 1.3 - scroll.offset * 3.2, 1.3 - scroll.offset * 3.2) 
+    }
+
+
     state.events.update() // Raycasts every frame rather than on pointer-move
     state.camera.lookAt(0, 0, 20) // Look at center
   })
   return <group ref={ref} {...props} />
 }
 
-function Cards() {
+function Cards(cardOpacity) {
   let sense = -1; // 1 or -1 to set x value
   let senseZ = 1; // 1 or -1 tp set z value
   let loopPoint = 1; // 
@@ -150,11 +180,13 @@ function Cards() {
         <Card
           key={i}
           url={cardUrl}
+          cardOpacity={cardOpacity}
           position={[position.x, position.y, position.z]}
           rotation={[0,  position.rotationY, 0]}
         />
         <TextCard
           url={textUrl}
+          cardOpacity={cardOpacity}
           position={[position.xText, position.yText, position.zText]}
           rotation={[0, position.rotationY + Math.PI, 0]}
           />

@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { Image } from '@react-three/drei';
 import './Util';
 
-export default function Card({ url, ...props }) {
+export default function Card({ url, cardOpacity, ...props }) {
     const ref = useRef();
     const materialProps = {
         transparent: true,
