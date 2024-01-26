@@ -2,25 +2,25 @@
 
 @font-face {
   font-family: "BasicLight";
-  src: url("./assets/fonts/MonumentExtended-UltraLight.otf");
+  src: url("../public/fonts/MonumentExtended-UltraLight.otf");
   font-weight: 400;
 }
 
 @font-face {
   font-family: "BasicRegular";
-  src: url("./assets/fonts/MonumentExtended-Regular.otf");
+  src: url("../public/fonts/MonumentExtended-Regular.otf");
   font-weight: 400;
 }
 
 
 @font-face {
   font-family: "BasicBold";
-  src: url("./assets/fonts/MonumentExtended-Bold.otf");
+  src: url("../public/fonts/MonumentExtended-Bold.otf");
 }
 
 @font-face {
   font-family: "PPNeue-Book";
-  src: url("./assets/fonts/ppneuemontreal-book.otf");
+  src: url("../public/fonts/ppneuemontreal-book.otf");
 }
 
 html {
