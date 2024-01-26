@@ -110,6 +110,7 @@ body {
   left: 40px;
   font-family: "BasicRegular";
   font-size: 16px;
+  z-index: 4;
 }
 
 .hud-why{
@@ -123,6 +124,7 @@ body {
   color: white;
   cursor: pointer;
   pointer-events: all;
+  z-index: 4;
   transition: opacity 0.3s ease-in-out; /* Add a transition for a smoother effect */
 
 }
@@ -283,10 +285,9 @@ body {
   position: absolute;
   bottom: 40px;
   right: 60px;
-
   display: flex;
   gap: 10px;
-
+  z-index: 4;
   font-family: "BasicRegular";
   font-size: 16px;
   background: transparent;
