@@ -454,5 +454,8 @@ body {
     right: 20px;
     bottom: 42px;
   }
+  .linear-back-hud{
+    background: linear-gradient(180deg, #80d0c700 40%, #80D0C7 91.35%);
+  }
 
 }
