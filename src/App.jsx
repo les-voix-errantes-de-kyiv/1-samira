@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import './App.css';
 import React, { useState, useRef, useEffect } from 'react';
 import { Canvas, _roots, useFrame } from '@react-three/fiber'
-import {  ScrollControls, useScroll } from '@react-three/drei';
+import {  ScrollControls, useScroll , Sparkles} from '@react-three/drei';
 // import { easing , geometry} from 'maath'
 
 // Components
@@ -63,18 +63,29 @@ function App() {
     }
     // gère l'apparition du menu hud quand user remonte tout en haut
   };
-
+  // Directional Light
+  const directionalLight = (
+    <directionalLight
+      position={[-2, 0, -2]} // Adjust the position based on your scene
+      intensity={1}
+      color="white"
+      castShadow // Enable shadows if needed
+    />
+  );
   return (
     <div className="app">
       <Overlay isVisible={isOverlayVisible} handleExploreClick={handleExploreClick} handleMusicBtn={handleMusicBtn} />
       <div className="canvas-container">
         <Canvas camera={{ position: [0, 2, 40], rotation:[15,0,0], fov: 15 }}>
-          <ambientLight intensity={1} />
-          <spotLight position={[10, 10, 10]} angle={0.45} penumbra={1} decay={0} intensity={2} />
-          <pointLight position={[-10, -10, -10]} decay={1} intensity={1} />
+        <Sparkles count={2000} scale={10} size={10} speed={0.4} />
+          <ambientLight  position={[-2, 0, 0]} intensity={1} />
+          {directionalLight}
+          <spotLight position={[-1, 0, 0]} angle={0.45} penumbra={1} decay={1} intensity={1} />
+          <pointLight position={[-10, -10, -10]} decay={1} intensity={3} />
           <ScrollControls pages={12} >
             <Rig rotation={[0, Math.PI, 0]} onScrollOffsetChange={handleScrollOffsetChange}>
               <Cards cardOpacity={cardOpacity} />
+
             </Rig>
             <Axis rotation={[0, 0, 0]} scale={[]}>
               <Statue position={[0,-0.7,0]} />
