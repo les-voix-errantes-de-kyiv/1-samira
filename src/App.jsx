@@ -21,6 +21,18 @@ function App() {
     setOverlayVisible(false);
   };
 
+    var audio = new Audio('./assets/music/Alambari.mp3');
+
+    // Jouer la musique
+    audio.play();
+
+    // Vous pouvez également ajouter des événements, par exemple pour arrêter la musique après qu'elle a été jouée
+    audio.addEventListener('ended', function() {
+      console.log('La musique est terminée');
+      audio.play();
+      // Vous pouvez ajouter d'autres actions ici
+    });
+
   return (
     <div className="app">
       <Overlay isVisible={isOverlayVisible} handleExploreClick={handleExploreClick} />
@@ -52,9 +64,18 @@ function Rig(props) {
   const ref = useRef()
   const scroll = useScroll()
   useFrame((state, delta) => {
-    ref.current.rotation.y = -scroll.offset * (Math.PI * 4) * 1.002 * 6 // Rotate contents
-    ref.current.position.y = scroll.offset * (Math.PI * 3) * 6// Move contents
-    state.events.update() // Raycasts every frame rather than on pointer-move
+    let scrollSpeed = 4;
+
+    console.log(scroll.offset)
+
+    //if(scroll.offset <= 0.14553762968512687){ //stoppe le scroll à la fin du carousel
+
+      ref.current.rotation.y = -scroll.offset * (Math.PI * 4) * 1.002 * scrollSpeed // Rotate contents
+      ref.current.position.y = scroll.offset * (Math.PI * 3) * scrollSpeed // Move contents
+      state.events.update() // Raycasts every frame rather than on pointer-move
+
+    //}
+
   })
   return <group ref={ref} {...props} />
 }
@@ -81,7 +102,7 @@ function Cards() {
   let lastPosition = 0;
 
   const cardPosition = (i, lastPosition, sense, senseZ) => {
-    const step = 1.15;
+    const step = 1.17;
     const position = new THREE.Vector3();
     const radius = 2; // radius of the spiral
 

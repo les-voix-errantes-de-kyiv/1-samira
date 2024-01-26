@@ -6,6 +6,12 @@
   font-weight: 400;
 }
 
+@font-face {
+  font-family: "BasicRegular";
+  src: url("./assets/fonts/MonumentExtended-Regular.otf");
+  font-weight: 400;
+}
+
 
 @font-face {
   font-family: "BasicBold";
@@ -13,8 +19,8 @@
 }
 
 @font-face {
-  font-family: "PPNeue-Light";
-  src: url("./assets/fonts/ppneuemontreal-medium.otf");
+  font-family: "PPNeue-Book";
+  src: url("./assets/fonts/ppneuemontreal-book.otf");
 }
 
 html {
@@ -72,14 +78,6 @@ body {
   text-align: center;
 }
 
-.progress-cont{
-  width: 65%;
-  border: 3px white solid;
-  margin: 7px auto;
-  height: 10px;
-  position: relative;
-}
-
 .progressbar{
   width: calc(0% - 5px);
   background-color: white;
@@ -109,7 +107,7 @@ body {
   position: absolute;
   top: 40px;
   left: 40px;
-  font-family: "BasicBold";
+  font-family: "BasicRegular";
   font-size: 16px;
 }
 
@@ -117,7 +115,7 @@ body {
   position: absolute;
   top: 40px;
   right: 60px;
-  font-family: "BasicBold";
+  font-family: "BasicRegular";
   font-size: 16px;
 }
 
@@ -125,9 +123,9 @@ body {
   position: fixed;
   bottom: 40px;
   left: 40px;
-  font-family: "BasicLight";
+  font-family: "BasicRegular";
   font-weight: 400;
-  max-width: 30%;
+  max-width: 20%;
   font-size:16px;
   transition: opacity 0.5s ease; /* Add a transition for a smoother effect */
 
@@ -145,17 +143,28 @@ body {
 }
 
 .explore-block p{
-  font-family: "PPNeue-Light";
+  font-family: "PPNeue-Book";
   font-weight: 400;
 
 }
 
 .explore-btn{
-  font-family: "BasicBold";
+  font-family: "BasicRegular";
   font-size:16px;
   text-decoration: none;
+  border-bottom: 1px solid transparent;
   color: white;
-  border-bottom: 1px solid white;
   width: fit-content;
   cursor: pointer;
+  font-weight: 400;
 }
+
+.explore-btn:after {
+  display:block;
+  content: '';
+  border-bottom: solid 1px black;  
+  transform: scaleX(0);  
+  transition: transform 250ms ease-in-out;
+}
+.explore-btn:hover:after { transform: scaleX(1); }
+.explore-btn:after{  transform-origin:  0% 50%; }
