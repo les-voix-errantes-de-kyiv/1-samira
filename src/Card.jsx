@@ -1,13 +1,30 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { easing } from 'maath';
 import { Image } from '@react-three/drei';
 import './Util';
 
-export default function Card({ url, ...props }) {
+export default function Card({ url, cardOpacity, ...props }) {
   const ref = useRef();
   const [hovered, hover] = useState(false);
+
+  // useEffect(() => {
+  //   // Ajustez la visibilité lorsque la variable isVisible change
+  //   if (ref.current) {
+  //     ref.current.visible = cardOpacity.cardOpacity;
+  //   }
+  // }, [cardOpacity]);
+
+  // useEffect(() => {
+  //   if (cardOpacity.cardOpacity) {
+  //     easing.damp(ref.current.material, 'opacity', 1, 0.2);
+  //     console.log("op:1")
+  //   } else {
+  //     easing.damp(ref.current.material, 'opacity', 0, 0.2);
+  //     console.log("op:0")
+  //   }
+  // }, [cardOpacity]);
 
   const pointerOver = (e) => (e.stopPropagation(), hover(true));
   const pointerOut = () => hover(false);
@@ -20,10 +37,8 @@ export default function Card({ url, ...props }) {
   
   const materialProps = {
     transparent: true,
-    opacity: 1, // Adjust the opacity as needed
+    opacity: cardOpacity, // Adjust the opacity as needed
   };
-
-
 
   return (
       <Image ref={ref} url={url}  side={THREE.DoubleSide} 
