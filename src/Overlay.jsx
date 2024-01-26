@@ -39,7 +39,7 @@ return (
             <div className="sound-state" id="sound-state">OFF</div>
         </div>
         <PopIn isVisible={isPopInVisible} handlePopinClose={handlePopinClose}/>
-
+        <div className='linear-back-hud'></div>
     </div>
 );
 };

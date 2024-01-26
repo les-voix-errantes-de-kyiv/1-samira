@@ -26,7 +26,7 @@ function App() {
     cardOpacity = true
     console.log("2 "+cardOpacity)
     var div = document.querySelector("div.canvas-container > div:last-child > div:last-child div")
-    div.scrollTop = 3380;
+    div.scrollTop = 4180;
     setOverlayVisible(false);
   };
 
@@ -95,7 +95,7 @@ function Rig(props) {
   const ref = useRef()
   const scroll = useScroll()
   useFrame((state, delta) => {
-    let scrollSpeed = 4.7;
+    let scrollSpeed = 4.8;
 
     //console.log(scroll.offset)
 

@@ -95,7 +95,7 @@ body {
   height: 100vh;
   position: fixed;
   color: white;
-  font-weight: 700;
+  font-weight: 400;
   z-index: 2;
 
 }
@@ -315,4 +315,10 @@ body {
   font-weight: 400;
   font-size: 16px;
 
+}
+
+.linear-back-hud{
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #80d0c700 8.25%, #80D0C7 142.35%);
 }
